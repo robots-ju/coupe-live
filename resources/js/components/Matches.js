@@ -49,7 +49,7 @@ export default {
             ]),
             m('table.table.table-sm', [
                 m('thead', m('tr', [
-                    m('th', '#'),
+                    m('th.text-right', '#'),
                     m('th', 'Heure'),
                     m('th', 'Table A'),
                     m('th', 'Table B'),
@@ -59,7 +59,7 @@ export default {
                 m('tbody', matches.map(match => {
                     let rowClasses = [];
 
-                    const involvesSelectedTeam = match.tables.some(table => table.team === vnode.state.team);
+                    const involvesSelectedTeam = vnode.state.team && match.tables.some(table => table.team === vnode.state.team);
 
                     if (vnode.state.team && !involvesSelectedTeam) {
                         rowClasses.push('text-muted');
@@ -73,14 +73,9 @@ export default {
                         m('tr', {
                             className: rowClasses.join(' '),
                         }, [
-                            m('td.text-right', {
-                                className: match.current ? 'font-weight-bold text-primary' : '',
-                            }, [
-                                match.current ? [m('span.fas.fa-play', {
-                                    title: 'Match en cours',
-                                }), ' '] : null,
-                                match.number,
-                            ]),
+                            m('td.text-right.text-muted', match.current ? m('span.fas.fa-play.text-primary', {
+                                title: 'Match #' + match.number + ' en cours',
+                            }) : match.number),
                             m('td', {
                                 className: match.current ? 'font-weight-bold text-primary' : '',
                             }, match.time),
@@ -129,7 +124,7 @@ export default {
                         let gameName;
 
                         if (match.game === 'semifinals') {
-                            gameName = 'Semi-finales';
+                            gameName = 'Demi-finales';
                         } else if (match.game === 'finals') {
                             gameName = 'Finales';
                         } else {
