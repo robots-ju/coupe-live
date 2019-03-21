@@ -1,0 +1,33 @@
+$coupe-orange: #ffaf22;
+
+$primary: $coupe-orange;
+
+@import '~bootstrap/scss/bootstrap';
+@import '~@fortawesome/fontawesome-free/scss/fontawesome';
+@import '~@fortawesome/fontawesome-free/scss/solid';
+@import '~@fortawesome/fontawesome-free/scss/brands';
+
+body {
+    border-top: 4px solid $coupe-orange;
+}
+
+.team-logo {
+    display: inline-block;
+    vertical-align: middle;
+    width: 1.5em;
+    border-radius: 5px;
+
+    .text-muted & {
+        filter: grayscale(100%);
+    }
+}
+
+.stream-offline {
+    background-color: #aaa;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 5vh;
+    font-weight: bold;
+}
