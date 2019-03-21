@@ -31,3 +31,10 @@ body {
     font-size: 5vh;
     font-weight: bold;
 }
+
+@include media-breakpoint-up(lg) {
+    .panel-matches {
+        overflow-y: auto;
+        max-height: calc(100vh - 100px);
+    }
+}

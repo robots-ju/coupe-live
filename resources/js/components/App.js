@@ -19,16 +19,32 @@ export default {
             });
     },
     view(vnode) {
-        return m('.container-fluid', m('.row.mt-3', [
-            m('.col-md-6', [
-                m(YouTubeStream, {
-                    youtubeVideoId: vnode.state.youtubeVideoId,
-                }),
-                m(SocialLinks),
+        return m('.container-fluid', [
+            m('.row.mt-3', [
+                m('.col-lg-6.mb-5', [
+                    m(YouTubeStream, {
+                        youtubeVideoId: vnode.state.youtubeVideoId,
+                    }),
+                    m(SocialLinks),
+                ]),
+                m('.col-lg-6.mb-5.panel-matches', m(Matches, {
+                    matches: vnode.state.matches,
+                })),
             ]),
-            m('.col-md-6', m(Matches, {
-                matches: vnode.state.matches,
-            })),
-        ]));
+            m('footer.text-center.text-muted.pb-1', [
+                '© ',
+                m('a', {
+                    href: 'https://robots-ju.ch/',
+                    target: '_blank',
+                    rel: 'noopener',
+                }, 'Robots-JU'),
+                ' 2019 - Application réalisée par ',
+                m('a', {
+                    href: 'https://clarkwinkelmann.com/',
+                    target: '_blank',
+                    rel: 'noopener',
+                }, 'Clark Winkelmann'),
+            ]),
+        ]);
     },
 }
