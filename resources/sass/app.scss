@@ -11,6 +11,12 @@ body {
     border-top: 4px solid $coupe-orange;
 }
 
+// Small enough so the row height doesn't change when it appears
+.btn-very-small {
+    font-size: 0.9em;
+    padding: 0.02rem 0.3rem
+}
+
 .team-logo {
     display: inline-block;
     vertical-align: middle;

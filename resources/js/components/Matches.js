@@ -99,7 +99,7 @@ export default {
                                     ' ' + team.name,
                                     table.score ? [
                                         ' ',
-                                        m('a.btn.btn-sm.btn-outline-secondary', {
+                                        m('a.btn.btn-very-small.btn-outline-secondary', {
                                             href: table.scoreboard ? 'https://fll-scoreboard-2018.robots-ju.ch/#' + table.scoreboard : '#',
                                             target: '_blank',
                                             rel: 'noopener',
