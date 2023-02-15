@@ -6,7 +6,7 @@ export default {
 
         return [
             m('h2', 'Live Stream'),
-            m('.embed-responsive.embed-responsive-16by9', youtubeVideoId ? [
+            m('.ratio.ratio-16x9', youtubeVideoId ? [
                 m('iframe.embed-responsive-item', {
                     key: youtubeVideoId, // Make sure the entire iframe is re-created if the video url changes
                     src: 'https://www.youtube-nocookie.com/embed/' + youtubeVideoId + '?rel=0',
@@ -14,7 +14,7 @@ export default {
                     allowfullscreen: true,
                 }),
             ] : [
-                m('.stream-offline.embed-responsive-item.progress-bar-striped', 'Live stream dès 12h30'),
+                m('.stream-offline.progress-bar-striped', 'Live stream dès 12h30'),
             ]),
         ];
     },

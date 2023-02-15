@@ -9,17 +9,14 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
-use Storage;
+use Illuminate\Support\Facades\Storage;
 
 class UpdateStream implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    public $youtubeVideoId;
-
-    public function __construct(string $youtubeVideoId)
+    public function __construct(public ?string $youtubeVideoId)
     {
-        $this->youtubeVideoId = $youtubeVideoId;
     }
 
     public function handle()
@@ -33,7 +30,11 @@ class UpdateStream implements ShouldQueue
         }
 
         if ($this->youtubeVideoId !== $current) {
-            Storage::put('stream.txt', $this->youtubeVideoId);
+            if ($this->youtubeVideoId) {
+                Storage::put('stream.txt', $this->youtubeVideoId);
+            } else {
+                Storage::delete('stream.txt');
+            }
 
             broadcast(new StreamUpdated($this->youtubeVideoId));
         }

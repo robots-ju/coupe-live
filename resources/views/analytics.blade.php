@@ -1,9 +1,6 @@
 @if (config('services.matomo.url') && config('services.matomo.site_id'))
     <script type="text/javascript">
         var _paq = _paq || [];
-        @if (auth()->check())
-        _paq.push(['setUserId', {!! json_encode(auth()->user()->email) !!}]);
-        @endif
         _paq.push(['trackPageView']);
         _paq.push(['enableLinkTracking']);
         (function () {

@@ -12,11 +12,8 @@ class StreamUpdated implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public $youtubeVideoId;
-
-    public function __construct(string $youtubeVideoId)
+    public function __construct(public ?string $youtubeVideoId)
     {
-        $this->youtubeVideoId = $youtubeVideoId;
     }
 
     public function broadcastOn()

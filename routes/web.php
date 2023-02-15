@@ -1,3 +1,6 @@
 <?php
 
-Route::get('/', 'AppController@home');
+use App\Http\Controllers\AppController;
+use Illuminate\Support\Facades\Route;
+
+Route::get('/', AppController::class . '@home');

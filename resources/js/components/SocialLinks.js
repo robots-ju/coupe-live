@@ -38,7 +38,7 @@ export default {
     view() {
         return [
             m('p.mt-5.text-center', 'Suivez la Coupe Robots-JU sur les réseaux sociaux !'),
-            m('.row', LINKS.map(link => m('.col', m('a.btn.btn-block.btn-primary', {
+            m('.row', LINKS.map(link => m('.col', m('a.btn.btn-primary.d-block', {
                 href: link.url,
                 target: '_blank',
                 rel: 'noopener',
@@ -46,7 +46,7 @@ export default {
                 m('span', {className: link.icon,}),
                 ' ' + link.name
             ])))),
-            m('.row.mt-3', WEBSITES.map(website => m('.col', m('a.btn.btn-block.btn-outline-dark', {
+            m('.row.mt-3', WEBSITES.map(website => m('.col', m('a.btn.btn-outline-dark.d-block', {
                 href: website.url,
                 target: '_blank',
                 rel: 'noopener',

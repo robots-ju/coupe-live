@@ -7,6 +7,7 @@ export default {
     oninit(vnode) {
         vnode.state.youtubeVideoId = vnode.attrs.youtubeVideoId || '';
         vnode.state.matches = vnode.attrs.matches || [];
+        vnode.state.year = (new Date()).getFullYear();
 
         window.Echo.channel('live')
             .listen('StreamUpdated', event => {
@@ -38,7 +39,7 @@ export default {
                     target: '_blank',
                     rel: 'noopener',
                 }, 'Robots-JU'),
-                ' 2019 - Application réalisée par ',
+                ' 2019-' + vnode.state.year + ' - Application réalisée par ',
                 m('a', {
                     href: 'https://clarkwinkelmann.com/',
                     target: '_blank',

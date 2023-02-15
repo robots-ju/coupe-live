@@ -2,8 +2,9 @@
 
 namespace App\Console\Commands;
 
+use GuzzleHttp\Utils;
 use Illuminate\Console\Command;
-use Storage;
+use Illuminate\Support\Facades\Storage;
 
 class SeedTestData extends Command
 {
@@ -12,9 +13,10 @@ class SeedTestData extends Command
 
     public function handle()
     {
-        Storage::put('stream.txt', 'dQw4w9WgXcQ');
-        Storage::put('matches.json', \GuzzleHttp\json_encode([
+        Storage::put('stream.txt', 'PReKHsXvmO4'); // Live stream 2019
+        Storage::put('matches.json', Utils::jsonEncode([
             [
+                'number' => 1,
                 'time' => '14:00',
                 'tables' => [
                     [
@@ -32,6 +34,7 @@ class SeedTestData extends Command
                 ],
             ],
             [
+                'number' => 2,
                 'time' => '14:05',
                 'tables' => [
                     [

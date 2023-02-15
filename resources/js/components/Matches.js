@@ -18,10 +18,10 @@ export default {
         const selectedTeam = vnode.state.team ? teams.find(team => team.key === vnode.state.team) : null;
 
         return [
-            m('.d-flex', [
+            m('.d-flex.justify-content-between', [
                 m('h2', 'Matches'),
                 m('.dropdown.ml-auto', [
-                    m('button[type=button][data-toggle=dropdown][aria-haspopup=true][aria-expanded=false].btn.btn-primary.dropdown-toggle', selectedTeam ? [
+                    m('button[type=button][data-bs-toggle=dropdown][aria-expanded=false].btn.btn-primary.dropdown-toggle', selectedTeam ? [
                         m(TeamLogo, {
                             team: selectedTeam,
                         }),

@@ -4,8 +4,9 @@ namespace App\Console\Commands;
 
 use App\Events\MatchesUpdated;
 use App\Events\StreamUpdated;
+use GuzzleHttp\Utils;
 use Illuminate\Console\Command;
-use Storage;
+use Illuminate\Support\Facades\Storage;
 
 class ForceRefresh extends Command
 {
@@ -14,7 +15,7 @@ class ForceRefresh extends Command
 
     public function handle()
     {
-        broadcast(new MatchesUpdated(\GuzzleHttp\json_decode(Storage::get('matches.json'))));
+        broadcast(new MatchesUpdated(Utils::jsonDecode(Storage::get('matches.json') ?? '[]')));
         broadcast(new StreamUpdated(Storage::get('stream.txt')));
     }
 }

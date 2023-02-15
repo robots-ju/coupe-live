@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use GuzzleHttp\Utils;
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
+use Illuminate\Support\Facades\Storage;
 use InvalidArgumentException;
-use Storage;
 
 class AppController extends Controller
 {
@@ -17,7 +18,7 @@ class AppController extends Controller
             $stream = Storage::get('stream.txt');
 
             try {
-                $matches = \GuzzleHttp\json_decode(Storage::get('matches.json'));
+                $matches = Utils::jsonDecode(Storage::get('matches.json') ?? '[]');
             } catch (InvalidArgumentException $exception) {
                 // ignore errors
             }
@@ -26,7 +27,7 @@ class AppController extends Controller
         }
 
         return view('app')
-            ->withStream(\GuzzleHttp\json_encode($stream))
-            ->withMatches(\GuzzleHttp\json_encode($matches));
+            ->withStream(Utils::jsonEncode($stream))
+            ->withMatches(Utils::jsonEncode($matches));
     }
 }

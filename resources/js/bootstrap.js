@@ -1,19 +1,17 @@
-try {
-    window.Popper = require('popper.js').default;
-    window.$ = window.jQuery = require('jquery');
+import * as Popper from '@popperjs/core';
 
-    require('bootstrap');
-} catch (e) {
-    // ignore
-}
+window.Popper = Popper;
 
-import Echo from 'laravel-echo'
+import {Dropdown} from 'bootstrap';
 
-window.Pusher = require('pusher-js');
+import Echo from 'laravel-echo';
+import Pusher from 'pusher-js';
+
+window.Pusher = Pusher;
 
 window.Echo = new Echo({
     broadcaster: 'pusher',
     key: process.env.MIX_PUSHER_APP_KEY,
     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
-    encrypted: true
+    forceTLS: true
 });

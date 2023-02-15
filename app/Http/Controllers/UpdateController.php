@@ -14,7 +14,7 @@ class UpdateController extends Controller
             'video' => 'nullable|string',
         ]);
 
-        dispatch(new UpdateStream($request->get('video') ?? ''));
+        dispatch(new UpdateStream($request->get('video')));
     }
 
     public function matches(Request $request)

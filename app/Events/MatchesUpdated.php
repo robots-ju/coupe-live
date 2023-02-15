@@ -12,11 +12,8 @@ class MatchesUpdated implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public $matches;
-
-    public function __construct(array $matches)
+    public function __construct(public array $matches)
     {
-        $this->matches = $matches;
     }
 
     public function broadcastOn()
