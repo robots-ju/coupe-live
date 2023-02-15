@@ -1,6 +1,10 @@
-import m from 'mithril';
+import * as m from 'mithril';
 
-const LINKS = [
+const LINKS: {
+    name: string
+    icon: string
+    url: string
+}[] = [
     {
         name: 'Twitter',
         icon: 'fab fa-twitter',
@@ -23,7 +27,10 @@ const LINKS = [
     },
 ];
 
-const WEBSITES = [
+const WEBSITES: {
+    name: string
+    url: string
+}[] = [
     {
         name: 'Coupe.Robots-JU.ch',
         url: 'https://coupe.robots-ju.ch/',
@@ -34,7 +41,7 @@ const WEBSITES = [
     },
 ];
 
-export default {
+export default class SocialLinks implements m.ClassComponent {
     view() {
         return [
             m('p.mt-5.text-center', 'Suivez la Coupe Robots-JU sur les réseaux sociaux !'),
@@ -52,5 +59,5 @@ export default {
                 rel: 'noopener',
             }, website.name)))),
         ];
-    },
+    }
 }

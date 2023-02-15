@@ -1,0 +1,8 @@
+{
+    "include": [
+        "resources/js/globals.d.ts"
+    ],
+    "files": [
+        "resources/js/app.ts"
+    ]
+}

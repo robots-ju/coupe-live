@@ -1,4 +1,25 @@
-export default [
+interface Table {
+    table: 'A' | 'B' | 'C' | 'D'
+    team?: string | null
+    score?: number | null
+    scoreboard?: string | null
+}
+
+export interface Match {
+    number: number
+    time: string
+    tables: [Table, Table]
+    current?: boolean
+    game?: 'robotgame' | 'semifinals' | 'finals'
+}
+
+export interface Team {
+    key: string
+    name: string
+    logo: string
+}
+
+const teams: Team[] = [
     {
         key: 'capricorns',
         name: 'Capricorns',
@@ -50,3 +71,5 @@ export default [
         logo: 'roch.jpg',
     },
 ];
+
+export default teams;

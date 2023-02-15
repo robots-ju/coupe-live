@@ -2,10 +2,10 @@ import * as Popper from '@popperjs/core';
 
 window.Popper = Popper;
 
-import {Dropdown} from 'bootstrap';
+require('bootstrap/js/dist/dropdown');
 
 import Echo from 'laravel-echo';
-import Pusher from 'pusher-js';
+import * as Pusher from 'pusher-js';
 
 window.Pusher = Pusher;
 

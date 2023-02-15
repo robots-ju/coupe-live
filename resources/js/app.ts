@@ -1,7 +1,7 @@
 require('./bootstrap');
 
-import m from 'mithril';
-import App from "./components/App";
+import * as m from 'mithril';
+import App from './components/App';
 
 const root = document.getElementById('app');
 

@@ -1,35 +1,46 @@
-import m from 'mithril';
-import YouTubeStream from "./YouTubeStream";
-import Matches from "./Matches";
-import SocialLinks from "./SocialLinks";
+import * as m from 'mithril';
+import YouTubeStream from './YouTubeStream';
+import Matches from './Matches';
+import SocialLinks from './SocialLinks';
+import {Match} from '../teams';
 
-export default {
-    oninit(vnode) {
-        vnode.state.youtubeVideoId = vnode.attrs.youtubeVideoId || '';
-        vnode.state.matches = vnode.attrs.matches || [];
-        vnode.state.year = (new Date()).getFullYear();
+interface AppAttrs {
+    youtubeVideoId?: string | null
+    matches?: Match[]
+}
+
+export default class App implements m.ClassComponent<AppAttrs> {
+    youtubeVideoId: string
+    matches: any[]
+    year: number
+
+    oninit(vnode: m.Vnode<AppAttrs, this>) {
+        this.youtubeVideoId = vnode.attrs.youtubeVideoId || '';
+        this.matches = vnode.attrs.matches || [];
+        this.year = (new Date()).getFullYear();
 
         window.Echo.channel('live')
             .listen('StreamUpdated', event => {
-                vnode.state.youtubeVideoId = event.youtubeVideoId;
+                this.youtubeVideoId = event.youtubeVideoId;
                 m.redraw();
             })
             .listen('MatchesUpdated', event => {
-                vnode.state.matches = event.matches;
+                this.matches = event.matches;
                 m.redraw();
             });
-    },
+    }
+
     view(vnode) {
         return m('.container-fluid', [
             m('.row.mt-3', [
                 m('.col-lg-6.mb-5', [
                     m(YouTubeStream, {
-                        youtubeVideoId: vnode.state.youtubeVideoId,
+                        youtubeVideoId: this.youtubeVideoId,
                     }),
                     m(SocialLinks),
                 ]),
                 m('.col-lg-6.mb-5.panel-matches', m(Matches, {
-                    matches: vnode.state.matches,
+                    matches: this.matches,
                 })),
             ]),
             m('footer.text-center.text-muted.pb-1', [
@@ -39,7 +50,7 @@ export default {
                     target: '_blank',
                     rel: 'noopener',
                 }, 'Robots-JU'),
-                ' 2019-' + vnode.state.year + ' - Application réalisée par ',
+                ' 2019-' + this.year + ' - Application réalisée par ',
                 m('a', {
                     href: 'https://clarkwinkelmann.com/',
                     target: '_blank',
@@ -47,5 +58,5 @@ export default {
                 }, 'Clark Winkelmann'),
             ]),
         ]);
-    },
+    }
 }

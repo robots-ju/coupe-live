@@ -1,7 +1,11 @@
-import m from 'mithril';
+import * as m from 'mithril';
 
-export default {
-    view(vnode) {
+interface YouTubeStreamAttrs {
+    youtubeVideoId: string
+}
+
+export default class YouTubeStream implements m.ClassComponent<YouTubeStreamAttrs> {
+    view(vnode: m.Vnode<YouTubeStreamAttrs, this>) {
         const {youtubeVideoId} = vnode.attrs;
 
         return [
@@ -17,5 +21,5 @@ export default {
                 m('.stream-offline.progress-bar-striped', 'Live stream dès 12h30'),
             ]),
         ];
-    },
+    }
 }

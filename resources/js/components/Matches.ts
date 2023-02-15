@@ -1,12 +1,15 @@
-import m from 'mithril';
-import teams from "../teams";
-import TeamLogo from "./TeamLogo";
+import * as m from 'mithril';
+import teams, {Match} from '../teams';
+import TeamLogo from './TeamLogo';
 
-export default {
-    oninit(vnode) {
-        vnode.state.team = null;
-    },
-    view(vnode) {
+interface MatchesAttrs {
+    matches: Match[]
+}
+
+export default class Matches implements m.ClassComponent<MatchesAttrs> {
+    team: string | null = null
+
+    view(vnode: m.VnodeDOM<MatchesAttrs, this>) {
         const {matches} = vnode.attrs;
 
         if (!Array.isArray(matches)) {
@@ -15,7 +18,7 @@ export default {
 
         let lastGame = null;
 
-        const selectedTeam = vnode.state.team ? teams.find(team => team.key === vnode.state.team) : null;
+        const selectedTeam = this.team ? teams.find(team => team.key === this.team) : null;
 
         return [
             m('.d-flex.justify-content-between', [
@@ -27,16 +30,16 @@ export default {
                         }),
                         ' ' + selectedTeam.name,
                     ] : 'Afficher le programme d\'une équipe'),
-                    m('.dropdown-menu.dropdown-menu-right', [
+                    m('.dropdown-menu.dropdown-menu-end', [
                         m('button[type=button].dropdown-item', {
-                            onclick() {
-                                vnode.state.team = null;
+                            onclick: () => {
+                                this.team = null;
                             },
                         }, 'Toutes les équipes'),
                         teams.map(team => m('button[type=button].dropdown-item', {
-                            className: vnode.state.team === team.key ? 'active' : '',
-                            onclick() {
-                                vnode.state.team = team.key;
+                            className: this.team === team.key ? 'active' : '',
+                            onclick: () => {
+                                this.team = team.key;
                             },
                         }, [
                             m(TeamLogo, {
@@ -59,9 +62,9 @@ export default {
                 m('tbody', matches.map(match => {
                     let rowClasses = [];
 
-                    const involvesSelectedTeam = vnode.state.team && match.tables.some(table => table.team === vnode.state.team);
+                    const involvesSelectedTeam = this.team && match.tables.some(table => table.team === this.team);
 
-                    if (vnode.state.team && !involvesSelectedTeam) {
+                    if (this.team && !involvesSelectedTeam) {
                         rowClasses.push('text-muted');
                     }
 
@@ -91,7 +94,7 @@ export default {
                                 }
 
                                 return m('td', {
-                                    className: team.key === vnode.state.team ? 'font-weight-bold' : '',
+                                    className: team.key === this.team ? 'font-weight-bold' : '',
                                 }, [
                                     m(TeamLogo, {
                                         team,
@@ -142,5 +145,5 @@ export default {
                 })),
             ]),
         ];
-    },
+    }
 }
