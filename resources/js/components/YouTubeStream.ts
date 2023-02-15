@@ -18,7 +18,7 @@ export default class YouTubeStream implements m.ClassComponent<YouTubeStreamAttr
                     allowfullscreen: true,
                 }),
             ] : [
-                m('.stream-offline.progress-bar-striped', 'Live stream dès 12h30'),
+                m('.stream-offline.progress-bar-striped', 'Suivez la journée du 18 mars en direct sur cette page'),
             ]),
         ];
     }

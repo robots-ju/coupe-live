@@ -12,9 +12,7 @@ export default class Matches implements m.ClassComponent<MatchesAttrs> {
     view(vnode: m.VnodeDOM<MatchesAttrs, this>) {
         const {matches} = vnode.attrs;
 
-        if (!Array.isArray(matches)) {
-            return m('p', 'Données de match invalides');
-        }
+        const hasValidContent = Array.isArray(matches) && matches.length > 0;
 
         let lastGame = null;
 
@@ -24,7 +22,9 @@ export default class Matches implements m.ClassComponent<MatchesAttrs> {
             m('.d-flex.justify-content-between', [
                 m('h2', 'Matches'),
                 m('.dropdown.ml-auto', [
-                    m('button[type=button][data-bs-toggle=dropdown][aria-expanded=false].btn.btn-primary.dropdown-toggle', selectedTeam ? [
+                    m('button[type=button][data-bs-toggle=dropdown][aria-expanded=false].btn.btn-primary.dropdown-toggle', {
+                        disabled: !hasValidContent,
+                    }, selectedTeam ? [
                         m(TeamLogo, {
                             team: selectedTeam,
                         }),
@@ -50,6 +50,7 @@ export default class Matches implements m.ClassComponent<MatchesAttrs> {
                     ]),
                 ]),
             ]),
+            hasValidContent ? null : m('.program-soon', m('div', 'Programme définitif disponible prochainement')),
             m('table.table.table-sm', [
                 m('thead', m('tr', [
                     m('th.text-right', '#'),
@@ -59,7 +60,7 @@ export default class Matches implements m.ClassComponent<MatchesAttrs> {
                     m('th', 'Table C'),
                     m('th', 'Table D'),
                 ])),
-                m('tbody', matches.map(match => {
+                m('tbody', hasValidContent ? matches.map(match => {
                     let rowClasses = [];
 
                     const involvesSelectedTeam = this.team && match.tables.some(table => table.team === this.team);
@@ -142,8 +143,63 @@ export default class Matches implements m.ClassComponent<MatchesAttrs> {
                     }
 
                     return rows;
-                })),
+                }) : this.placeholder()),
             ]),
         ];
+    }
+
+    placeholder() {
+        const dom = [];
+
+        for (let i = 0; i < 14; i++) {
+            dom.push(m('tr', [
+                m('td', m('span.text-placeholder', {
+                    style: {
+                        '--length': 2,
+                    },
+                })),
+                m('td', [
+                    m('span.text-placeholder', {
+                        style: {
+                            '--length': 2,
+                        },
+                    }),
+                    ':',
+                    m('span.text-placeholder', {
+                        style: {
+                            '--length': 2,
+                        },
+                    }),
+                ]),
+                i % 2 === 0 ? null : [
+                    m('td'),
+                    m('td'),
+                ],
+                m('td', [
+                    m('span.team-logo'),
+                    ' ',
+                    m('span.text-placeholder', {
+                        style: {
+                            '--length': 10,
+                        },
+                    }),
+                ]),
+                m('td', [
+                    m('span.team-logo'),
+                    ' ',
+                    m('span.text-placeholder', {
+                        style: {
+                            '--length': 10,
+                        },
+                    }),
+                ]),
+                i % 2 === 0 ? [
+                    m('td'),
+                    m('td'),
+                ] : null,
+            ]));
+        }
+
+        return dom;
     }
 }

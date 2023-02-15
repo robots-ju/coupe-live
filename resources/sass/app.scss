@@ -43,13 +43,19 @@ body {
     }
 }
 
+span.team-logo {
+    background: #c2c2c2;
+    height: 1.5em;
+}
+
 .stream-offline {
     background-color: #aaa;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
-    font-size: 5vh;
+    font-size: 4vh;
+    padding: 0 3vw;
     font-weight: bold;
     --bs-progress-height: 16px;
 }
@@ -58,5 +64,33 @@ body {
     .panel-matches {
         overflow-y: auto;
         max-height: calc(100vh - 100px);
+    }
+}
+
+.text-placeholder {
+    background: #dedede;
+    display: inline-block;
+    border-radius: 4px;
+    height: 1em;
+    width: calc(var(--length) * 8px);
+    margin: 0 2px -4px 2px; // Better align with text baseline
+}
+
+.program-soon {
+    text-align: center;
+    color: #666;
+    text-shadow: 0 0 20px white;
+    height: 0;
+    position: relative;
+
+    > div {
+        position: absolute;
+        z-index: 20;
+        left: 0;
+        right: 0;
+        top: 10vw;
+        font-size: 4vh;
+        padding: 0 3vw;
+        font-weight: bold;
     }
 }
