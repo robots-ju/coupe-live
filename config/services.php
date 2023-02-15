@@ -31,4 +31,9 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'matomo' => [
+        'url' => env('MATOMO_URL'),
+        'site_id' => env('MATOMO_SITE_ID'),
+    ],
+
 ];
