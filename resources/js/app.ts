@@ -10,6 +10,7 @@ m.mount(root, {
         return m(App, {
             youtubeVideoId: JSON.parse(root.dataset.stream),
             matches: JSON.parse(root.dataset.matches),
+            presentation: !!m.parseQueryString(window.location.search).presentation,
         });
     },
 });

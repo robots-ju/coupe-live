@@ -1,12 +1,14 @@
 import * as m from 'mithril';
 import YouTubeStream from './YouTubeStream';
 import Matches from './Matches';
+import PresentationInfo from './PresentationInfo';
 import SocialLinks from './SocialLinks';
 import {Match} from '../teams';
 
 interface AppAttrs {
     youtubeVideoId?: string | null
     matches?: Match[]
+    presentation: boolean
 }
 
 export default class App implements m.ClassComponent<AppAttrs> {
@@ -30,20 +32,26 @@ export default class App implements m.ClassComponent<AppAttrs> {
             });
     }
 
-    view(vnode) {
-        return m('.container-fluid', [
+    view(vnode: m.Vnode<AppAttrs, this>) {
+        const {presentation} = vnode.attrs;
+
+        return m('.container-fluid', {
+            className: presentation ? 'presentation-mode' : '',
+        }, [
             m('.row.mt-3', [
-                m('.col-lg-6.mb-5', [
+                m('.col-lg-' + (presentation ? 4 : '6.mb-5'), [
                     m(YouTubeStream, {
                         youtubeVideoId: this.youtubeVideoId,
+                        presentation,
                     }),
-                    m(SocialLinks),
+                    presentation ? m(PresentationInfo) : m(SocialLinks),
                 ]),
-                m('.col-lg-6.mb-5.panel-matches', m(Matches, {
+                m('.col-lg-' + (presentation ? 8 : '6.mb-5') + '.panel-matches', m(Matches, {
                     matches: this.matches,
+                    presentation,
                 })),
             ]),
-            m('footer.text-center.text-muted.pb-1', [
+            presentation ? null : m('footer.text-center.text-muted.pb-1', [
                 '© ',
                 m('a', {
                     href: 'https://robots-ju.ch/',

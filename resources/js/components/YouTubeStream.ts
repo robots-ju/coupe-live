@@ -2,14 +2,15 @@ import * as m from 'mithril';
 
 interface YouTubeStreamAttrs {
     youtubeVideoId: string
+    presentation: boolean
 }
 
 export default class YouTubeStream implements m.ClassComponent<YouTubeStreamAttrs> {
     view(vnode: m.Vnode<YouTubeStreamAttrs, this>) {
-        const {youtubeVideoId} = vnode.attrs;
+        const {youtubeVideoId, presentation} = vnode.attrs;
 
         return [
-            m('h2', 'Live Stream'),
+            presentation ? null : m('h2', 'Live Stream'),
             m('.ratio.ratio-16x9', youtubeVideoId ? [
                 m('iframe.embed-responsive-item', {
                     key: youtubeVideoId, // Make sure the entire iframe is re-created if the video url changes

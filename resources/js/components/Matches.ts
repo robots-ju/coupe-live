@@ -4,13 +4,19 @@ import TeamLogo from './TeamLogo';
 
 interface MatchesAttrs {
     matches: Match[]
+    presentation: boolean
 }
+
+const PREVIOUS_MATCHES_VISIBLE_IN_PRESENTATION_MODE = 6;
+// When reaching the end of the list, allow more old matches to remain visible
+// Otherwise the page would be mostly blank
+const MINIMUM_MATCHES_TO_SHOW = 12;
 
 export default class Matches implements m.ClassComponent<MatchesAttrs> {
     team: string | null = null
 
     view(vnode: m.VnodeDOM<MatchesAttrs, this>) {
-        const {matches} = vnode.attrs;
+        const {matches, presentation} = vnode.attrs;
 
         const hasValidContent = Array.isArray(matches) && matches.length > 0;
 
@@ -18,10 +24,14 @@ export default class Matches implements m.ClassComponent<MatchesAttrs> {
 
         const selectedTeam = this.team ? teams.find(team => team.key === this.team) : null;
 
+        const currentMatchIndex = matches.findIndex(match => match.current);
+        // It's not a problem if this value is negative, the full list will be visible
+        const showFromMatchIndex = Math.min(currentMatchIndex === -1 ? 0 : currentMatchIndex - PREVIOUS_MATCHES_VISIBLE_IN_PRESENTATION_MODE, matches.length - MINIMUM_MATCHES_TO_SHOW);
+
         return [
             m('.d-flex.justify-content-between', [
-                m('h2', 'Matches'),
-                m('.dropdown.ml-auto', [
+                presentation ? null : m('h2', 'Matches'),
+                presentation ? null : m('.dropdown.ml-auto', [
                     m('button[type=button][data-bs-toggle=dropdown][aria-expanded=false].btn.btn-primary.dropdown-toggle', {
                         disabled: !hasValidContent,
                     }, selectedTeam ? [
@@ -60,7 +70,11 @@ export default class Matches implements m.ClassComponent<MatchesAttrs> {
                     m('th', 'Table C'),
                     m('th', 'Table D'),
                 ])),
-                m('tbody', hasValidContent ? matches.map(match => {
+                m('tbody', hasValidContent ? matches.map((match, matchIndex) => {
+                    if (presentation && (currentMatchIndex === -1 || matchIndex < showFromMatchIndex)) {
+                        return null;
+                    }
+
                     let rowClasses = [];
 
                     const involvesSelectedTeam = this.team && match.tables.some(table => table.team === this.team);
@@ -71,6 +85,10 @@ export default class Matches implements m.ClassComponent<MatchesAttrs> {
 
                     if (involvesSelectedTeam) {
                         rowClasses.push('table-primary');
+                    }
+
+                    if (presentation && match.current) {
+                        rowClasses.push('table-secondary');
                     }
 
                     let rows = [
@@ -100,7 +118,10 @@ export default class Matches implements m.ClassComponent<MatchesAttrs> {
                                     m(TeamLogo, {
                                         team,
                                     }),
-                                    ' ' + team.name,
+                                    ' ',
+                                    m('span', {
+                                        className: team.name && team.name.length >= 18 ? 'long-team-name' : '',
+                                    }, team.name),
                                     table.score ? [
                                         ' ',
                                         m('a.btn.btn-very-small.btn-outline-secondary', {

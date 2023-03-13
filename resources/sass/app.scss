@@ -34,8 +34,9 @@ body {
 
 .team-logo {
     display: inline-block;
-    vertical-align: middle;
-    width: 1.5em;
+    vertical-align: baseline;
+    margin-bottom: -5px;
+    width: 24px;
     border-radius: 5px;
 
     .text-muted & {
@@ -64,6 +65,10 @@ span.team-logo {
     .panel-matches {
         overflow-y: auto;
         max-height: calc(100vh - 100px);
+
+        .presentation-mode & {
+            max-height: calc(100vh - 20px);
+        }
     }
 }
 
@@ -93,4 +98,43 @@ span.team-logo {
         padding: 0 3vw;
         font-weight: bold;
     }
+}
+
+.presentation-info {
+    text-align: center;
+    font-size: 1.8rem;
+    margin-top: 15vh;
+
+    p:first-child {
+        color: #666;
+    }
+
+    p:last-child {
+        font-size: 4rem;
+        font-weight: bold;
+    }
+}
+
+.presentation-mode {
+    &::after {
+        content: '';
+        display: block;
+        position: fixed;
+        z-index: 100;
+        inset: auto 0 0;
+        box-shadow: 0 0 50px 50px white;
+    }
+
+    .table {
+        font-size: 1.3rem;
+    }
+
+    // iframe block
+    .ratio {
+        margin-top: 7vh;
+    }
+}
+
+.long-team-name {
+    font-size: 0.9em;
 }
