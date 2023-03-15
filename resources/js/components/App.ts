@@ -1,5 +1,6 @@
 import * as m from 'mithril';
 import YouTubeStream from './YouTubeStream';
+import Clock from './Clock';
 import Matches from './Matches';
 import PresentationInfo from './PresentationInfo';
 import SocialLinks from './SocialLinks';
@@ -44,7 +45,10 @@ export default class App implements m.ClassComponent<AppAttrs> {
                         youtubeVideoId: this.youtubeVideoId,
                         presentation,
                     }),
-                    presentation ? m(PresentationInfo) : m(SocialLinks),
+                    presentation ? [
+                        m(Clock),
+                        m(PresentationInfo),
+                    ] : m(SocialLinks),
                 ]),
                 m('.col-lg-' + (presentation ? 8 : '6.mb-5') + '.panel-matches', m(Matches, {
                     matches: this.matches,

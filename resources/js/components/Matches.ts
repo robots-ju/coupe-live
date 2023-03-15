@@ -71,7 +71,7 @@ export default class Matches implements m.ClassComponent<MatchesAttrs> {
                     m('th', 'Table D'),
                 ])),
                 m('tbody', hasValidContent ? matches.map((match, matchIndex) => {
-                    if (presentation && (currentMatchIndex === -1 || matchIndex < showFromMatchIndex)) {
+                    if (presentation && matchIndex < showFromMatchIndex) {
                         return null;
                     }
 

@@ -100,10 +100,40 @@ span.team-logo {
     }
 }
 
+.clock {
+    text-align: center;
+    font-size: 6rem;
+    font-weight: bold;
+    color: #666;
+    margin-top: 6vh;
+}
+
+.clock-icon {
+    display: inline-block;
+    font-size: 2.5rem;
+    vertical-align: middle;
+    margin-top: -0.3em;
+    color: #aaa;
+}
+
+.clock-hour,
+.clock-minute {
+    display: inline-block;
+    min-width: 1.5em;
+}
+
+.clock-hour {
+    text-align: right;
+}
+
+.clock-minute {
+    text-align: left;
+}
+
 .presentation-info {
     text-align: center;
     font-size: 1.8rem;
-    margin-top: 15vh;
+    margin-top: 8vh;
 
     p:first-child {
         color: #666;
