@@ -21,44 +21,34 @@ export interface Team {
 
 const teams: Team[] = [
     {
-        key: 'jura1',
-        name: 'Jur\'arc électrique',
-        logo: 'ae.png',
-    },
-    {
-        key: 'jura2',
-        name: 'Ultra_powered.ju',
-        logo: 'ultrapoweredju.jpg',
-    },
-    {
-        key: 'jura3',
-        name: 'Les Patates jurassiennes',
-        logo: 'pj.png',
-    },
-    {
-        key: 'robohunter',
-        name: 'Robo-Hunter',
-        logo: 'robohunter.jpg',
-    },
-    {
-        key: 'juniorsmilebots',
-        name: 'Junior Smilebots',
-        logo: 'js.png',
-    },
-    {
-        key: 'cfrsblok',
-        name: 'CFR\'s Blok',
-        logo: 'cfrsblok.jpg',
-    },
-    {
         key: 'phoenix',
         name: 'Phoenix',
         logo: 'phoenix.jpg',
     },
     {
-        key: 'capricorns',
-        name: 'Capricorns',
-        logo: 'capricorns.png',
+        key: 'parechocs',
+        name: 'Master Pare_chocs.JU',
+        logo: 'mpc.png',
+    },
+    {
+        key: 'roch1',
+        name: 'Saint-Roch I',
+        logo: 'roch.jpg',
+    },
+    {
+        key: 'patatartiner',
+        name: 'Patartatiner jurassiennes',
+        logo: 'pj.png',
+    },
+    {
+        key: 'cfrsbrik',
+        name: 'CFR’s Brik',
+        logo: 'cfrsblok.jpg',
+    },
+    {
+        key: 'jurartiste',
+        name: 'Jurartiste',
+        logo: 'ja.png',
     },
     {
         key: 'backtotheblock',

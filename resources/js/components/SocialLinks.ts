@@ -6,14 +6,19 @@ const LINKS: {
     url: string
 }[] = [
     {
-        name: 'Twitter',
-        icon: 'fab fa-twitter',
+        name: 'Twitter/X',
+        icon: 'fab fa-x-twitter',
         url: 'https://twitter.com/CoupeRobotsJU'
     },
     {
         name: 'Facebook',
         icon: 'fab fa-facebook',
         url: 'https://www.facebook.com/CoupeRobotsJU/'
+    },
+    {
+        name: 'Instagram',
+        icon: 'fab fa-instagram',
+        url: 'https://www.instagram.com/robotsju/'
     },
     {
         name: 'YouTube',

@@ -19,7 +19,7 @@ export default class YouTubeStream implements m.ClassComponent<YouTubeStreamAttr
                     allowfullscreen: true,
                 }),
             ] : [
-                m('.stream-offline.progress-bar-striped', 'Suivez la journée du 18 mars en direct sur cette page'),
+                m('.stream-offline.progress-bar-striped', 'Suivez la journée du 2 mars en direct sur cette page'),
             ]),
         ];
     }

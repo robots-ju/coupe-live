@@ -125,11 +125,11 @@ export default class Matches implements m.ClassComponent<MatchesAttrs> {
                                     table.score ? [
                                         ' ',
                                         m('a.btn.btn-very-small.btn-outline-secondary', {
-                                            href: table.scoreboard ? 'https://fll-scoreboard.robots-ju.ch/super-powered#' + table.scoreboard : '#',
+                                            href: table.scoreboard ? 'https://fll-scoreboard.robots-ju.ch/masterpiece#' + table.scoreboard : '#',
                                             target: '_blank',
                                             rel: 'noopener',
                                             title: table.scoreboard ? 'Cliquer pour voir le détail des missions sur le scoreboard' : 'Scoreboard non disponible',
-                                            onclick(event) {
+                                            onclick(event: MouseEvent) {
                                                 if (!table.scoreboard) {
                                                     event.preventDefault();
                                                 }
@@ -146,7 +146,7 @@ export default class Matches implements m.ClassComponent<MatchesAttrs> {
                     ];
 
                     if (match.game !== lastGame) {
-                        let gameName;
+                        let gameName: string;
 
                         if (match.game === 'semifinals') {
                             gameName = 'Demi-finales';
