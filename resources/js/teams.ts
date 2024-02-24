@@ -37,7 +37,7 @@ const teams: Team[] = [
     },
     {
         key: 'patatartiner',
-        name: 'Patartatiner jurassiennes',
+        name: 'Patatartiner jurassiennes',
         logo: 'pj.png',
     },
     {
