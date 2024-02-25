@@ -43,7 +43,7 @@ const teams: Team[] = [
     {
         key: 'cfrsbrik',
         name: 'CFR’s Brik',
-        logo: 'cfrsblok.jpg',
+        logo: 'cfr.png',
     },
     {
         key: 'jurartiste',
