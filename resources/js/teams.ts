@@ -21,39 +21,54 @@ export interface Team {
 
 const teams: Team[] = [
     {
-        key: 'phoenix',
-        name: 'Phoenix',
-        logo: 'phoenix.jpg',
+        key: 'equipain',
+        name: 'L’équi-pain jurassien',
+        logo: 'ep.png',
     },
     {
-        key: 'parechocs',
-        name: 'Master Pare_chocs.JU',
-        logo: 'mpc.png',
+        key: 'yellowsub',
+        name: 'Yellow_Submarine.JU',
+        logo: 'yellowsub.jpg',
     },
     {
-        key: 'roch1',
-        name: 'Saint-Roch I',
-        logo: 'roch.jpg',
+        key: 'patataquatique',
+        name: 'www.patataquatique.ju',
+        logo: 'pa.png',
     },
     {
-        key: 'patatartiner',
-        name: 'Patatartiner jurassiennes',
-        logo: 'pj.png',
-    },
-    {
-        key: 'cfrsbrik',
-        name: 'CFR’s Brik',
-        logo: 'cfr.png',
-    },
-    {
-        key: 'jurartiste',
-        name: 'Jurartiste',
+        key: 'jurabysses',
+        name: 'Jurabysses',
         logo: 'ja.png',
     },
     {
-        key: 'backtotheblock',
-        name: 'Back to the Block',
-        logo: 'backtotheblock.png',
+        key: 'aquajura',
+        name: 'AquaJura',
+        logo: 'aj.png',
+    },
+    {
+        key: 'poseidon',
+        name: 'Poséidon.ju',
+        logo: 'pj.png',
+    },
+    {
+        key: 'brik',
+        name: 'Brik’ception',
+        logo: 'brik.png',
+    },
+    {
+        key: 'robohunter',
+        name: 'RoboHunter',
+        logo: 'robohunter.jpg',
+    },
+    {
+        key: 'letsgo',
+        name: 'LET’S GO',
+        logo: 'letsgo.jpg',
+    },
+    {
+        key: 'roch',
+        name: 'Saint Roch’n’Roll',
+        logo: 'roch.jpg',
     },
 ];
 

@@ -125,7 +125,7 @@ export default class Matches implements m.ClassComponent<MatchesAttrs> {
                                     table.score ? [
                                         ' ',
                                         m('a.btn.btn-very-small.btn-outline-secondary', {
-                                            href: table.scoreboard ? 'https://fll-scoreboard.robots-ju.ch/masterpiece#' + table.scoreboard : '#',
+                                            href: table.scoreboard ? 'https://fll-scoreboard.robots-ju.ch/submerged#' + table.scoreboard : '#',
                                             target: '_blank',
                                             rel: 'noopener',
                                             title: table.scoreboard ? 'Cliquer pour voir le détail des missions sur le scoreboard' : 'Scoreboard non disponible',

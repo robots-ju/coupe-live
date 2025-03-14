@@ -6,14 +6,9 @@ const LINKS: {
     url: string
 }[] = [
     {
-        name: 'Twitter/X',
-        icon: 'fab fa-x-twitter',
-        url: 'https://twitter.com/CoupeRobotsJU'
-    },
-    {
         name: 'Facebook',
         icon: 'fab fa-facebook',
-        url: 'https://www.facebook.com/CoupeRobotsJU/'
+        url: 'https://www.facebook.com/RobotsJU/'
     },
     {
         name: 'Instagram',
@@ -24,11 +19,6 @@ const LINKS: {
         name: 'YouTube',
         icon: 'fab fa-youtube',
         url: 'https://www.youtube.com/user/robotsju'
-    },
-    {
-        name: 'Flickr',
-        icon: 'fab fa-flickr',
-        url: 'https://www.flickr.com/photos/robots-ju/'
     },
 ];
 
