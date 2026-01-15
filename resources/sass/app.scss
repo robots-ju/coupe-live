@@ -211,6 +211,14 @@ span.team-logo {
     }
 }
 
+.task-completed {
+    $stripe-color: rgba(200, 200, 200, 0.2);
+
+    background: linear-gradient(-45deg, $stripe-color 25%, transparent 25%, transparent 50%, $stripe-color 50%, $stripe-color 75%, transparent 75%, transparent);
+    background-size: 16px 16px;
+    opacity: 0.6;
+}
+
 .task-team-name {
     font-weight: bold;
 

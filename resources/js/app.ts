@@ -12,6 +12,7 @@ m.mount(root, {
             matches: JSON.parse(root.dataset.matches),
             presentation: !!m.parseQueryString(window.location.search).presentation,
             programOnly: !!m.parseQueryString(window.location.search).pgm,
+            moderatorToken: m.parseQueryString(window.location.search).moderator as string,
         });
     },
 });

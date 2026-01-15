@@ -11,6 +11,7 @@ interface AppAttrs {
     matches?: Match[]
     presentation: boolean
     programOnly: boolean
+    moderatorToken?: string
 }
 
 export default class App implements m.ClassComponent<AppAttrs> {
@@ -35,7 +36,7 @@ export default class App implements m.ClassComponent<AppAttrs> {
     }
 
     view(vnode: m.Vnode<AppAttrs, this>) {
-        const {presentation, programOnly} = vnode.attrs;
+        const {presentation, programOnly, moderatorToken} = vnode.attrs;
 
         if (programOnly) {
             return m('.container-fluid.program-only', m(Matches, {
@@ -61,6 +62,7 @@ export default class App implements m.ClassComponent<AppAttrs> {
                 m('.col-lg-' + (presentation ? 6 : '6.mb-5') + '.panel-matches', m(Matches, {
                     matches: this.matches,
                     presentation,
+                    moderatorToken,
                 })),
             ]),
             presentation ? null : m('footer.text-center.text-muted.pb-1', [

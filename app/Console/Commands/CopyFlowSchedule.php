@@ -167,7 +167,10 @@ class CopyFlowSchedule extends Command
             $sessions[] = $session;
         });
 
-        file_put_contents(storage_path('app/matches.json'), json_encode($sessions, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE));
+        $stringified = json_encode($sessions, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
+        file_put_contents(storage_path('app/schedule.json'), $stringified);
+        file_put_contents(storage_path('app/matches.json'), $stringified);
+        // If tasks were marked completed, a call to the moderation endpoint will be needed to re-apply
     }
 
     protected array $TRANSLATIONS = [
