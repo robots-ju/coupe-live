@@ -10,6 +10,7 @@ interface AppAttrs {
     youtubeVideoId?: string | null
     matches?: Match[]
     presentation: boolean
+    programOnly: boolean
 }
 
 export default class App implements m.ClassComponent<AppAttrs> {
@@ -34,13 +35,20 @@ export default class App implements m.ClassComponent<AppAttrs> {
     }
 
     view(vnode: m.Vnode<AppAttrs, this>) {
-        const {presentation} = vnode.attrs;
+        const {presentation, programOnly} = vnode.attrs;
+
+        if (programOnly) {
+            return m('.container-fluid.program-only', m(Matches, {
+                matches: this.matches,
+                presentation: true,
+            }));
+        }
 
         return m('.container-fluid', {
             className: presentation ? 'presentation-mode' : '',
         }, [
             m('.row.mt-3', [
-                m('.col-lg-' + (presentation ? 4 : '6.mb-5'), [
+                m('.col-lg-' + (presentation ? 6 : '6.mb-5'), [
                     m(YouTubeStream, {
                         youtubeVideoId: this.youtubeVideoId,
                         presentation,
@@ -50,7 +58,7 @@ export default class App implements m.ClassComponent<AppAttrs> {
                         m(PresentationInfo),
                     ] : m(SocialLinks),
                 ]),
-                m('.col-lg-' + (presentation ? 8 : '6.mb-5') + '.panel-matches', m(Matches, {
+                m('.col-lg-' + (presentation ? 6 : '6.mb-5') + '.panel-matches', m(Matches, {
                     matches: this.matches,
                     presentation,
                 })),

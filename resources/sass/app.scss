@@ -1,6 +1,4 @@
-$coupe-orange: #ffaf22;
-
-$primary: $coupe-orange;
+$primary: #24355c;
 
 @import '~bootstrap/scss/functions';
 @import '~bootstrap/scss/variables';
@@ -23,13 +21,17 @@ $primary: $coupe-orange;
 @import '~@fortawesome/fontawesome-free/scss/brands';
 
 body {
-    border-top: 4px solid $coupe-orange;
+    border-top: 4px solid $primary;
 }
 
 // Small enough so the row height doesn't change when it appears
 .btn-very-small {
     font-size: 0.9em;
     padding: 0.02rem 0.3rem
+}
+
+.btn-primary {
+    //color: white;
 }
 
 .team-logo {
@@ -59,6 +61,14 @@ span.team-logo {
     padding: 0 3vw;
     font-weight: bold;
     --bs-progress-height: 16px;
+}
+
+.panel-matches {
+    padding-bottom: 40px;
+
+    .presentation-mode & {
+        padding-bottom: 100px; // So we can scroll to the bottom without the last session in the shadow
+    }
 }
 
 @include media-breakpoint-up(lg) {
@@ -102,15 +112,15 @@ span.team-logo {
 
 .clock {
     text-align: center;
-    font-size: 6rem;
+    font-size: 8rem;
     font-weight: bold;
     color: #666;
-    margin-top: 6vh;
+    margin-top: 4vh;
 }
 
 .clock-icon {
     display: inline-block;
-    font-size: 2.5rem;
+    font-size: 3.5rem;
     vertical-align: middle;
     margin-top: -0.3em;
     color: #aaa;
@@ -133,7 +143,8 @@ span.team-logo {
 .presentation-info {
     text-align: center;
     font-size: 1.8rem;
-    margin-top: 8vh;
+    margin-top: 4vh;
+    line-height: 1.6em;
 
     p:first-child {
         color: #666;
@@ -155,16 +166,72 @@ span.team-logo {
         box-shadow: 0 0 50px 50px white;
     }
 
-    .table {
-        font-size: 1.3rem;
+    .panel-matches {
+        font-size: 18px;
     }
 
     // iframe block
     .ratio {
-        margin-top: 7vh;
+        margin-top: 2vh;
     }
 }
 
 .long-team-name {
     font-size: 0.9em;
+}
+
+.session {
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    position: relative;
+    padding: 0.8em 1em 0;
+    margin-top: 1.4em;
+    break-inside: avoid;
+}
+
+.session-name {
+    border-radius: 2em; // Anything >height seems to create symmetrical corners
+    transform: translateY(-50%);
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: var(--session-color);
+    color: white;
+    padding: 0.2em 0.8em;
+    font-size: 0.8em;
+    font-weight: bold;
+}
+
+.task {
+    border-bottom: 1px solid #dee2e6;
+    padding: 0.5em 0;
+
+    &:last-child {
+        border: none;
+    }
+}
+
+.task-team-name {
+    font-weight: bold;
+
+    .no-team & {
+        font-weight: normal;
+        font-style: italic;
+    }
+}
+
+.task-team-number {
+    color: #666;
+}
+
+.task-time {
+    margin-bottom: 0.3em;
+}
+
+.task-location {
+    margin-top: 0.3em;
+}
+
+.program-only {
+    padding-bottom: 100vh;
 }

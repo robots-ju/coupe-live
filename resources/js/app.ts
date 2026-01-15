@@ -11,6 +11,7 @@ m.mount(root, {
             youtubeVideoId: JSON.parse(root.dataset.stream),
             matches: JSON.parse(root.dataset.matches),
             presentation: !!m.parseQueryString(window.location.search).presentation,
+            programOnly: !!m.parseQueryString(window.location.search).pgm,
         });
     },
 });
