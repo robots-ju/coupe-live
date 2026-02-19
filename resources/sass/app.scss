@@ -20,10 +20,6 @@ $primary: #24355c;
 @import '~@fortawesome/fontawesome-free/scss/solid';
 @import '~@fortawesome/fontawesome-free/scss/brands';
 
-body {
-    border-top: 4px solid $primary;
-}
-
 // Small enough so the row height doesn't change when it appears
 .btn-very-small {
     font-size: 0.9em;
@@ -38,8 +34,7 @@ body {
     display: inline-block;
     vertical-align: baseline;
     margin-bottom: -5px;
-    width: 24px;
-    border-radius: 5px;
+    height: 20px;
 
     .text-muted & {
         filter: grayscale(100%);
@@ -242,4 +237,72 @@ span.team-logo {
 
 .program-only {
     padding-bottom: 100vh;
+}
+
+.vertical-presentation {
+    font-size: 12px;
+
+    .clock-icon {
+        display: none;
+    }
+
+    .clock {
+        font-size: 320px;
+        margin: 0;
+        line-height: 254px;
+        color: black;
+    }
+
+    .team-logo {
+        height: 14px;
+        margin-bottom: -3px;
+    }
+}
+
+.vertical-team-block {
+    height: 326px;
+}
+
+.vertical-general-block {
+    height: 1300px;
+}
+
+.vertical-team-block,
+.vertical-general-block {
+    overflow: hidden;
+    position: relative;
+
+    &::after {
+        content: '';
+        display: block;
+        position: absolute;
+        z-index: 100;
+        inset: auto 0 0;
+        box-shadow: 0 0 50px 50px white;
+    }
+}
+
+.vertical-header {
+    background: #333;
+    color: white;
+    font-weight: bold;
+    padding: 2px;
+    text-align: center;
+    border-radius: 5px;
+}
+
+.vertical-team-number {
+    font-weight: normal;
+}
+
+.vertical-promo {
+    text-align: center;
+    font-size: 20px;
+    padding: 6px 0 8px;
+    color: #888;
+}
+.vertical-promo-url {
+    color: #478a23;
+    margin: 0 10px;
+    font-weight: bold;
 }

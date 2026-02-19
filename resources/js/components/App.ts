@@ -11,6 +11,7 @@ interface AppAttrs {
     matches?: Match[]
     presentation: boolean
     programOnly: boolean
+    programOnlyRobotGame: boolean
     moderatorToken?: string
 }
 
@@ -36,12 +37,13 @@ export default class App implements m.ClassComponent<AppAttrs> {
     }
 
     view(vnode: m.Vnode<AppAttrs, this>) {
-        const {presentation, programOnly, moderatorToken} = vnode.attrs;
+        const {presentation, programOnly, programOnlyRobotGame, moderatorToken} = vnode.attrs;
 
         if (programOnly) {
             return m('.container-fluid.program-only', m(Matches, {
                 matches: this.matches,
                 presentation: true,
+                onlyRobotGame: programOnlyRobotGame,
             }));
         }
 

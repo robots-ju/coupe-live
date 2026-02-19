@@ -14,62 +14,109 @@ export interface Match {
 }
 
 export interface Team {
-    key: string
+    number: number
     name: string
-    logo: string
+    city: string
+    canton: string
+    lang: string
 }
 
-const teams: Team[] = [
-    {
-        key: 'equipain',
-        name: 'L’équi-pain jurassien',
-        logo: 'ep.png',
-    },
-    {
-        key: 'yellowsub',
-        name: 'Yellow_Submarine.JU',
-        logo: 'yellowsub.jpg',
-    },
-    {
-        key: 'patataquatique',
-        name: 'www.patataquatique.ju',
-        logo: 'pa.png',
-    },
-    {
-        key: 'jurabysses',
-        name: 'Jurabysses',
-        logo: 'ja.png',
-    },
-    {
-        key: 'aquajura',
-        name: 'AquaJura',
-        logo: 'aj.png',
-    },
-    {
-        key: 'poseidon',
-        name: 'Poséidon.ju',
-        logo: 'pj.png',
-    },
-    {
-        key: 'brik',
-        name: 'Brik’ception',
-        logo: 'brik.png',
-    },
-    {
-        key: 'robohunter',
-        name: 'RoboHunter',
-        logo: 'robohunter.jpg',
-    },
-    {
-        key: 'letsgo',
-        name: 'LET’S GO',
-        logo: 'letsgo.jpg',
-    },
-    {
-        key: 'roch',
-        name: 'Saint Roch’n’Roll',
-        logo: 'roch.jpg',
-    },
-];
+const teams: Team[] = [{
+    number: 1062,
+    name: 'E-Arts',
+    city: 'Arnex sur Orbe',
+    canton: 'VD',
+    lang: 'fr',
+}, {
+    number: 1066,
+    name: 'BUSSIREX',
+    city: 'Bussigny',
+    canton: 'VD',
+    lang: 'fr',
+}, {
+    number: 1067,
+    name: 'Spéléobots',
+    city: 'Bussigny',
+    canton: 'VD',
+    lang: 'fr',
+}, {
+    number: 1068,
+    name: 'Les poulets rôtis',
+    city: 'Bussigny',
+    canton: 'VD',
+    lang: 'fr',
+}, {
+    number: 1084,
+    name: 'Capricorns',
+    city: 'Chur',
+    canton: 'GR',
+    lang: 'de',
+}, {
+    number: 1126,
+    name: 'Legomeister',
+    city: 'Auenstein',
+    canton: 'AG',
+    lang: 'de',
+}, {
+    number: 1136,
+    name: 'InkaBot',
+    city: 'Morges',
+    canton: 'VD',
+    lang: 'fr',
+}, {
+    number: 1137,
+    name: 'Raptors.JU',
+    city: 'Glovelier',
+    canton: 'JU',
+    lang: 'fr',
+}, {
+    number: 1145,
+    name: 'Progy-Technos',
+    city: 'Thun',
+    canton: 'BE',
+    lang: 'de',
+}, {
+    number: 1310,
+    name: 'Electronic Machines Schiers 2.0',
+    city: 'Schiers',
+    canton: 'GR',
+    lang: 'de',
+}, {
+    number: 1328,
+    name: 'Saint-Roch\'n\'Roll',
+    city: 'Lausanne',
+    canton: 'VD',
+    lang: 'fr',
+}, {
+    number: 1335,
+    name: 'mindfactory',
+    city: 'Baden',
+    canton: 'AG',
+    lang: 'de',
+}, {
+    number: 1370,
+    name: 'RoboHunter',
+    city: 'Roggwil',
+    canton: 'BE',
+    lang: 'de',
+}, {
+    number: 1503,
+    name: 'Blockhedz',
+    city: 'Oberentfelden',
+    canton: 'AG',
+    lang: 'de',
+}, {
+    number: 1532,
+    name: 'Capricorns Juniors',
+    city: 'Chur',
+    canton: 'GR',
+    lang: 'de',
+}, {
+    number: 1608,
+    name: 'BIG-BOT',
+    city: 'Fribourg',
+    canton: 'FR',
+    lang: 'fr',
+}];
 
 export default teams;

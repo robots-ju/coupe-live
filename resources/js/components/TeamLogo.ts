@@ -10,8 +10,8 @@ export default class TeamLogo implements m.ClassComponent<TeamLogoAttrs> {
         const {team} = vnode.attrs;
 
         return m('img.team-logo', {
-            src: '/logos/' + team.logo,
-            alt: 'Logo ' + team.name,
+            src: '/logos/' + team.canton + '.svg',
+            alt: 'Canton ' + team.canton,
         });
     }
 }

@@ -47,7 +47,7 @@ const HOT_LINKS: {
 export default class SocialLinks implements m.ClassComponent {
     view() {
         return [
-            m('p.mt-3.text-center', 'Suivez la FIRST LEGO League sur les réseaux sociaux !'),
+            m('p.mt-3.text-center', 'Suivez la FIRST LEGO League sur les réseaux sociaux ! / Folge der FIRST LEGO League in den sozialen Medien!'),
             m('.row.text-center', [
                 m('.col', [
                     'Robots-JU:',

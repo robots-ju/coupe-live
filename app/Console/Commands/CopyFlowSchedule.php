@@ -10,11 +10,6 @@ class CopyFlowSchedule extends Command
     protected $signature = 'copy-flow-schedule {path}';
     protected $description = 'Copy FLL Flow schedule';
 
-    // By chance, it works well this time as the only German team has the evaluation period alone
-    protected array $GERMAN_TEAMS = [
-        '1370',
-    ];
-
     public function handle(): void
     {
         // This way it works both with a URL of a file path
@@ -86,39 +81,33 @@ class CopyFlowSchedule extends Command
                     if (preg_match('~<a[^>]+>([^<]+)\(([0-9]+)\)</a>\s*Tisch\s([^<]+)-\s*<a[^>]+>([^<]+)\(([0-9]+)\)</a>\s*Tisch\s([^<]+)<~', $matches[3], $robotGameMatches) === 1) {
                         $task['teams'] = [
                             [
-                                'name' => trim($robotGameMatches[1]),
-                                'number' => $robotGameMatches[2],
+                                'team' => (int)$robotGameMatches[2],
                                 'table' => trim($robotGameMatches[3]),
                             ],
                             [
-                                'name' => trim($robotGameMatches[4]),
-                                'number' => $robotGameMatches[5],
+                                'team' => (int)$robotGameMatches[5],
                                 'table' => trim($robotGameMatches[6]),
                             ],
                         ];
                     } else if (preg_match('~<a[^>]+>([^<]+)\(([0-9]+)\)</a>\s*Tisch\s([^<]+)-\s*(freiwilliges Team ohne Wertung|-)~', $matches[3], $robotGameMatches) === 1) {
                         $task['teams'] = [
                             [
-                                'name' => trim($robotGameMatches[1]),
-                                'number' => $robotGameMatches[2],
+                                'team' => (int)$robotGameMatches[2],
                                 'table' => trim($robotGameMatches[3]),
                             ],
                             [
-                                'name' => $robotGameMatches[4] === '-' ? 'Aucune' : 'Match à blanc',
-                                'number' => '0',
-                                'table' => 'Table 2',
+                                'team' => $robotGameMatches[4] === '-' ? 'Aucune' : 'Match à blanc',
+                                'table' => 'Table ' . (trim($robotGameMatches[3]) === 'Table A' ? 'B' : 'D'),
                             ],
                         ];
                     } else if (preg_match('~(freiwilliges Team ohne Wertung|-)\s*-\s*<a[^>]+>([^<]+)\(([0-9]+)\)</a>\s*Tisch\s([^<]+)~', $matches[3], $robotGameMatches) === 1) {
                         $task['teams'] = [
                             [
-                                'name' => $robotGameMatches[1] === '-' ? 'Aucune' : 'Match à blanc',
-                                'number' => '0',
-                                'table' => 'Table 1',
+                                'team' => $robotGameMatches[1] === '-' ? 'Aucune' : 'Match à blanc',
+                                'table' => 'Table ' . (trim($robotGameMatches[4]) === 'Table B' ? 'A' : 'C'),
                             ],
                             [
-                                'name' => trim($robotGameMatches[2]),
-                                'number' => $robotGameMatches[3],
+                                'team' => (int)$robotGameMatches[3],
                                 'table' => trim($robotGameMatches[4]),
                             ],
                         ];
@@ -127,42 +116,11 @@ class CopyFlowSchedule extends Command
                         $this->line($matches[3]);
                     }
                 } else if (preg_match('~<a[^>]+>([^<]+)\(([0-9]+)\)</a~', $matches[3], $juryMatches) === 1) {
-                    $task['team'] = [
-                        'name' => trim($juryMatches[1]),
-                        'number' => $juryMatches[2],
-                    ];
+                    $task['team'] = (int)$juryMatches[2];
                 }
 
                 $session['tasks'][] = $task;
             });
-
-            $teamNumbers = [];
-
-            foreach ($session['tasks'] as $task) {
-                if (array_key_exists('team', $task)) {
-                    $teamNumbers[] = $task['team']['number'];
-                    continue;
-                }
-
-                if (array_key_exists('teams', $task)) {
-                    foreach ($task['teams'] as $team) {
-                        $teamNumbers[] = $team['number'];
-                    }
-                }
-            }
-
-            if (count($teamNumbers)) {
-                $nonGermanTeams = array_diff($teamNumbers, $this->GERMAN_TEAMS);
-
-                // If there are teams, and all are in the German array, we'll revert the translations
-                if (count($nonGermanTeams) === 0) {
-                    $session['name'] = $this->reverseTranslate($session['name']);
-
-                    foreach ($session['tasks'] as &$task) {
-                        $task['name'] = $this->reverseTranslate($task['name']);
-                    }
-                }
-            }
 
             $sessions[] = $session;
         });
@@ -174,24 +132,9 @@ class CopyFlowSchedule extends Command
     }
 
     protected array $TRANSLATIONS = [
-        // Challenge
-        'Eröffnung Challenge' => 'Ouverture Challenge',
-        'Jurybewertung' => 'Évaluation du jury',
-        //'Jurygespräch' => '',
-        'Robot-Game Testrunde' => 'Robot-Game Manche de test',
-        'Robot-Game Vorrunde 1' => 'Robot-Game Manche 1',
-        'Robot-Game Vorrunde 2' => 'Robot-Game Manche 2',
-        'Robot-Game Vorrunde 3' => 'Robot-Game Manche 3',
-        'Robot-Game Halbfinale' => 'Demi-finale Robot-Game',
-        'Robot-Game Finale' => 'Finale Robot-Game',
-        'Forschung auf der Bühne' => 'Présentations sur scène',
-        'Preisverleihung Challenge' => 'Remise des prix Challenge',
-
-        // Explore
-        'Eröffnung Explore' => 'Ouverture Explore',
-        'Begutachtung' => 'Évaluation',
-        'Ausstellung' => 'Exposition',
-        'Preisverleihung Explore' => 'Remise des prix Explore',
+        // For this bilingual version we will translate client-side. But we can use this feature to remove the Challenge references
+        'Eröffnung Challenge' => 'Eröffnung',
+        'Preisverleihung Challenge' => 'Preisverleihung',
     ];
 
     protected array $REVERSE_TRANSLATIONS = [];
