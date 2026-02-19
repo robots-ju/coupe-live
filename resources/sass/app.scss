@@ -301,8 +301,47 @@ span.team-logo {
     padding: 6px 0 8px;
     color: #888;
 }
+
 .vertical-promo-url {
     color: #478a23;
     margin: 0 10px;
     font-weight: bold;
+}
+
+.robotgame-overlay {
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+    font-size: 26px;
+
+    .team-logo {
+        height: 28px;
+        margin-bottom: -6px;
+    }
+}
+
+.robotgame-overlay-team {
+    background: rgba(#ED1C24, 0.8);
+    padding: 10px 20px;
+    color: white;
+}
+
+.robotgame-overlay-team--left {
+    border-radius: 0 0 10px 0;
+
+    .team-logo {
+        margin-right: 6px;
+    }
+}
+
+.robotgame-overlay-team--right {
+    border-radius: 0 0 0 10px;
+
+    .team-logo {
+        margin-left: 6px;
+    }
+}
+
+.robotgame-overlay-team--right {
+    text-align: right;
 }
