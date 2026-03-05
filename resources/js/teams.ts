@@ -21,39 +21,19 @@ export interface Team {
 
 const teams: Team[] = [
     {
-        key: 'equipain',
-        name: 'L’équi-pain jurassien',
-        logo: 'ep.png',
+        key: 'raptors',
+        name: 'Raptors.JU',
+        logo: 'robotsju.png',
     },
     {
-        key: 'yellowsub',
-        name: 'Yellow_Submarine.JU',
-        logo: 'yellowsub.jpg',
+        key: 'earts',
+        name: 'E-Arts',
+        logo: 'earts.jpg',
     },
     {
-        key: 'patataquatique',
-        name: 'www.patataquatique.ju',
-        logo: 'pa.png',
-    },
-    {
-        key: 'jurabysses',
-        name: 'Jurabysses',
-        logo: 'ja.png',
-    },
-    {
-        key: 'aquajura',
-        name: 'AquaJura',
-        logo: 'aj.png',
-    },
-    {
-        key: 'poseidon',
-        name: 'Poséidon.ju',
-        logo: 'pj.png',
-    },
-    {
-        key: 'brik',
-        name: 'Brik’ception',
-        logo: 'brik.png',
+        key: 'patates',
+        name: 'Les patatarchéologues',
+        logo: 'robotsju.png',
     },
     {
         key: 'robohunter',
@@ -61,14 +41,34 @@ const teams: Team[] = [
         logo: 'robohunter.jpg',
     },
     {
-        key: 'letsgo',
-        name: 'LET’S GO',
-        logo: 'letsgo.jpg',
+        key: 'jurartefact',
+        name: 'Jurartéfact',
+        logo: 'robotsju.png',
     },
     {
-        key: 'roch',
-        name: 'Saint Roch’n’Roll',
-        logo: 'roch.jpg',
+        key: 'capricorns',
+        name: 'Capricorns',
+        logo: 'capricorns.png',
+    },
+    {
+        key: 'jurarcheo',
+        name: 'Jura’rchéo',
+        logo: 'robotsju.png',
+    },
+    {
+        key: 'capricornsjr',
+        name: 'Capricorns Juniors',
+        logo: 'capricorns.png',
+    },
+    {
+        key: 'pioche',
+        name: 'Les dinosaures robots têtes de pioche du Jura',
+        logo: 'robotsju.png',
+    },
+    {
+        key: 'lbj',
+        name: 'Projet LBJ',
+        logo: 'bussibot.jpg',
     },
 ];
 
