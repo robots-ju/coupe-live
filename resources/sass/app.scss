@@ -11,6 +11,7 @@ $primary: #24355c;
 @import '~bootstrap/scss/containers';
 @import '~bootstrap/scss/grid';
 @import '~bootstrap/scss/tables';
+@import '~bootstrap/scss/alert';
 @import '~bootstrap/scss/buttons';
 @import '~bootstrap/scss/dropdown';
 @import '~bootstrap/scss/progress';
@@ -43,7 +44,8 @@ $primary: #24355c;
 
 span.team-logo {
     background: #c2c2c2;
-    height: 1.5em;
+    width: 16px; // The coat of arms aren't square, so we'll adopt a similar ratio
+    border-radius: 4px;
 }
 
 .stream-offline {

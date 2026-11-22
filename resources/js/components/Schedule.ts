@@ -31,6 +31,18 @@ export default class Schedule implements m.ClassComponent<ScheduleAttrs> {
         return sessions.map(session => {
             const tasksVnode = [];
 
+            // Show the provisory warning in a different style
+            // Don't show it at all in presentation mode so we can test things
+            if (session.name === 'Vorläufiges Programm') {
+                taskIndex += session.tasks.length;
+
+                if (presentation) {
+                    return null;
+                }
+
+                return m('.alert.alert-warning', this.translate(session.name, lang));
+            }
+
             // Create nodes first as that's where we increment the task index
             session.tasks.forEach(task => {
                 const taskAttrs: any = {};
@@ -50,10 +62,14 @@ export default class Schedule implements m.ClassComponent<ScheduleAttrs> {
                         return;
                     }
 
-                    if (hideGeneralTasksForTeam && !task.team && !task.teams) {
+                    // If a team is selected, always hide Explore stuff. The team filter is only for Challenge
+                    if (session.color === '#00A651') {
                         return;
                     }
 
+                    if (hideGeneralTasksForTeam && !task.team && !task.teams) {
+                        return;
+                    }
                 }
 
                 if (onlyRobotGame && !session.name.includes('Robot-Game')) {
@@ -124,15 +140,19 @@ export default class Schedule implements m.ClassComponent<ScheduleAttrs> {
         return m('.task-team-entry', {
             className: team ? '' : 'no-team',
         }, [
-            m(TeamLogo, {
-                team,
-            }),
-            ' ',
-            m('span.task-team-name', team.name),
             team ? [
+                m(TeamLogo, {
+                    team,
+                }),
+                ' ',
+                m('span.task-team-name', team.name),
                 ' ',
                 m('span.task-team-number', '(' + team.number + ')'),
-            ] : null,
+            ] : [
+                m('span.team-logo'),
+                ' ',
+                m('span.task-team-name', number ? number /* will show "Match blanc" if used, or other custom values */ : 'Aucune équipe'),
+            ],
             typeof teamRef === 'object' && teamRef.table ? [
                 ' - ',
                 m('span.task-table', teamRef.table),
@@ -147,11 +167,16 @@ export default class Schedule implements m.ClassComponent<ScheduleAttrs> {
 
         if (!lang) {
             const combined_translations = {
+                // Challenge
+                'Eröffnung Challenge': 'Ouverture / Eröffnung Challenge',
                 'Robot-Game Testrunde': 'Robot-Game Manche de test / Testrunde',
                 'Robot-Game Vorrunde 1': 'Robot-Game Manche 1 / Vorrunde 1',
                 'Robot-Game Vorrunde 2': 'Robot-Game Manche 2 / Vorrunde 2',
                 'Robot-Game Vorrunde 3': 'Robot-Game Manche 3 / Vorrunde 3',
                 'Robot-Game Halbfinale': 'Robot-Game Demi-finale / Halbfinale',
+
+                // Explore
+                'Eröffnung Explore': 'Ouverture / Eröffnung Explore',
             }
 
             if (combined_translations.hasOwnProperty(text)) {
@@ -160,7 +185,10 @@ export default class Schedule implements m.ClassComponent<ScheduleAttrs> {
         }
 
         const simple_translations = {
-            'Eröffnung': 'Ouverture',
+            'Vorläufiges Programm': 'Programme provisoire',
+
+            // Challenge
+            'Eröffnung Challenge': 'Ouverture Challenge',
             'Jurybewertung': 'Évaluation du jury',
             'Robot-Game Testrunde': 'Robot-Game Manche de test',
             'Robot-Game Vorrunde 1': 'Robot-Game Manche 1',
@@ -169,6 +197,11 @@ export default class Schedule implements m.ClassComponent<ScheduleAttrs> {
             'Robot-Game Halbfinale': 'Robot-Game Demi-finale',
             'Forschung auf der Bühne': 'Présentations sur scène',
             'Preisverleihung': 'Remise des prix',
+
+            // Explore
+            'Eröffnung Explore': 'Ouverture Explore',
+            'Begutachtung': 'Évaluation',
+            'Ausstellung': 'Exposition',
         };
 
         if (simple_translations.hasOwnProperty(text)) {
